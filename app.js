@@ -1,6 +1,6 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
 // Import all Routes
 const matchsRoutes = require("./routes/matchs");
@@ -15,6 +15,8 @@ app.use(bodyParser.json());
 app.use("/matchs", matchsRoutes);
 app.use("/bets", betsRoutes);
 app.use("/users", usersRoutes);
+//app.set("view engine", "pug");
+app.set("view engine", "ejs");
 
 // Launching the server
 const port = process.env.PORT || 3000;

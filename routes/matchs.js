@@ -4,15 +4,23 @@ const router = express.Router();
 
 // GET all matchs
 router.get("/", async function (req, res) {
-    try {
-        var con = await dbConnection();
-        await con.query('SELECT domicile.name as "domicile", exterieur.name as "exterieur", parties.home_team_rating, parties.away_team_rating, parties.draft_rating, parties.date FROM parties inner join teams domicile on parties.home_team = domicile.id inner join teams exterieur on parties.away_team = exterieur.id', (error, results, fields) => {
-            con.release();
-            res.end(JSON.stringify(results));
+  try {
+    var con = await dbConnection();
+    await con.query(
+      'SELECT domicile.name as "domicile", exterieur.name as "exterieur", parties.home_team_rating, parties.away_team_rating, parties.draft_rating, DATE_FORMAT(parties.date,"%d/%m/%Y") as date FROM parties inner join teams domicile on parties.home_team = domicile.id inner join teams exterieur on parties.away_team = exterieur.id',
+      (error, results, fields) => {
+        con.release();
+        //res.end(JSON.stringify(results));
+        const match = results;
+
+        res.render("matchs", {
+          matchs: match,
         });
-    } catch (error) {
-        console.log(error);
-    }
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // UPDATE currentTry from one user
