@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const matchsRoutes = require("./routes/matchs");
 const betsRoutes = require("./routes/bets");
 const usersRoutes = require("./routes/users");
+const ticketsRoutes = require("./routes/tickets");
 
 // Middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 app.use("/matchs", matchsRoutes);
 app.use("/bets", betsRoutes);
 app.use("/users", usersRoutes);
+app.use("/tickets", ticketsRoutes);
 //app.set("view engine", "pug");
 app.set("view engine", "ejs");
 

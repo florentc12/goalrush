@@ -5,36 +5,50 @@
     </head>
     <body>
         <h1>Liste des matchs</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Domicile</th>
-                    <th>Match Null</th>
-                    <th>Exterieur</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% for(var i=0; i < matchs.length; i++) { %>
+        <form action="https://www.google.fr/" method="get">
+            <table>
+                <thead>
                     <tr>
-                        <td><%= matchs[i].date%></td>
-
-                        <td>
-                            <input type="radio" id="dom<%=i%>" name="match<%=i%>" value="1">
-                            <label for="dom"><%= matchs[i].domicile%> - <%= matchs[i].home_team_rating%></label>
-                        </td>
-                        <td>
-                            <input type="radio" id="null<%=i%>" name="match<%=i%>" value="2">
-                            <label for="null">Null - <%= matchs[i].draft_rating%></label>
-                        </td>
-                        <td>
-                            <input type="radio" id="ext<%=i%>" name="match<%=i%>" value="3">
-                            <label for="ext"><%= matchs[i].exterieur%> - <%= matchs[i].away_team_rating%></label>
-                        </td>
+                        <th>Date</th>
+                        <th>Domicile</th>
+                        <th>Match Null</th>
+                        <th>Exterieur</th>
                     </tr>
-                <%}%>
-            </tbody>
-        </table>
-        <button type="button">Parier</button>
+                </thead>
+                <tbody>
+                    <% for(var i=0; i < matchs.length; i++) { %>
+                        <tr id="<%=matchs[i].id%>">
+                            <td><%= matchs[i].date%></td>
+
+                            <td>
+                                <input type="radio" id="dom<%=i%>" name="match<%=i%>" value="1">
+                                <label for="dom"><%= matchs[i].domicile%> - <%= matchs[i].home_team_rating%></label>
+                            </td>
+                            <td>
+                                <input type="radio" id="null<%=i%>" name="match<%=i%>" value="2">
+                                <label for="null">Null - <%= matchs[i].draft_rating%></label>
+                            </td>
+                            <td>
+                                <input type="radio" id="ext<%=i%>" name="match<%=i%>" value="3">
+                                <label for="ext"><%= matchs[i].exterieur%> - <%= matchs[i].away_team_rating%></label>
+                            </td>
+                        </tr>
+                    <%}%>
+                </tbody>
+            </table>
+            <div id="cote">
+
+            </div>
+
+            <div id="mise">
+
+            </div>
+
+            <div id="gain">
+
+            </div>
+            <p>Cote totale : </p>
+            <button>Parier</button>
+        </form>
     </body>
 </html>
